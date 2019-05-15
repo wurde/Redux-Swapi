@@ -17,6 +17,7 @@ const Component = React.Component
 const connect = react_redux.connect
 const CharacterList = components.CharacterList
 const Title = components.Title
+const getCharacters = actions.getCharacters
 
 /**
  * Define view component
@@ -28,12 +29,13 @@ class CharacterListView extends Component {
   }
 
   componentDidMount() {
-    // call our action
+    this.props.getCharacters()
   }
 
   render() {
-    if (this.props.fetching) {
-      // return something here to indicate that you are fetching data
+    console.log("this.props.isFetching", this.props.isFetching)
+    if (this.props.isFetching) {
+      return <p>Loading characters...</p>
     }
 
     return (
@@ -49,14 +51,16 @@ class CharacterListView extends Component {
  * Define mapStateToProps
  */
 
-const mapStateToProps = (state) => {
-  // TODO our mapStateToProps needs to have two properties inherited from state
-  // the characters and the fetching boolean
-  return state
+const mapStateToProps = state => {
+  console.log('state', state)
+  return {
+    characters: state.starWarsReducer.characters,
+    isFetching: state.starWarsReducer.isFetching
+  }
 }
 
 /**
  * Export view component
  */
 
-module.exports = connect(mapStateToProps, {})(CharacterListView)
+module.exports = connect(mapStateToProps, { getCharacters })(CharacterListView)

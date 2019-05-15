@@ -12,14 +12,19 @@ const Character = require('./Character')
  */
 
 const CharacterList = props => {
-  // TODO requires props.characters
-  // {props.characters.map(character => {
-  //   return <Character key={character.name} character={character} />
-  // })}
-  return (
-    <ul>
-    </ul>
-  )
+  console.log('props.characters', props.characters)
+
+  if (props.characters) {
+    return (
+      <ul>
+      {props.characters.map(character => {
+        return <Character key={character.name} character={character} />
+      })}
+      </ul>
+    )
+  } else {
+    return (<p>No characters found</p>)
+  }
 }
 
 /**

@@ -7,11 +7,24 @@
 const axios = require('axios')
 
 /**
+ * Constants
+ */
+
+const FETCH_CHAR_START = 'FETCH_CHAR_START'
+const FETCH_CHAR_SUCCESS = 'FETCH_CHAR_SUCCESS'
+const FETCH_CHAR_ERROR = 'FETCH_CHAR_ERROR'
+
+/**
  * Define actions
  */
 
-// we'll need to create 3 different action types here.
-// one for fetching, one for success and one for failure
+const getCharacters = () => dispatch => {
+  dispatch({ type: FETCH_CHAR_START })
+
+  axios.get('https://swapi.co/api/people')
+    .then(res => dispatch({ type: FETCH_CHAR_SUCCESS, payload: res.data.results }))
+    .catch(err => dispatch({ type: FETCH_CHAR_ERROR, payload: err }))
+}
 
 // our action creator will be a function that returns a function
 // the url to fetch characters from is `https://swapi.co/api/people/`
@@ -21,4 +34,9 @@ const axios = require('axios')
  * Export actions
  */
 
-module.exports = { }
+module.exports = {
+  FETCH_CHAR_START: FETCH_CHAR_START,
+  FETCH_CHAR_SUCCESS: FETCH_CHAR_SUCCESS,
+  FETCH_CHAR_ERROR: FETCH_CHAR_ERROR,
+  getCharacters: getCharacters,
+}
