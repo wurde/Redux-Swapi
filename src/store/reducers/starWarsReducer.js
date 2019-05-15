@@ -1,14 +1,36 @@
-import /* we need our action types here*/ "../actions";
+'use strict'
+
+/**
+ * Dependencies
+ */
+
+const actions = require('../actions/index')
+
+/**
+ * Constants
+ */
+
 const initialState = {
   characters: []
   // Array characters, Boolean fetching, null error.
-};
-export const charsReducer = (state = initialState, action) => {
+}
+
+/**
+ * Define reducer
+ */
+
+const starWarsReducer = (state = initialState, action) => {
   switch (action.type) {
     // Fill me in with the important reducers
     // action types should be FETCHING, SUCCESS and FAILURE
     // your switch statement should handle all of these cases.
     default:
-      return state;
+      return state
   }
-};
+}
+
+/**
+ * Export reducer
+ */
+
+module.exports = starWarsReducer

@@ -1,12 +1,30 @@
-import React from "react";
-import { connect } from "react-redux";
+'use strict'
 
-import { CharacterList } from "../components";
-// import actions
+/**
+ * Dependencies
+ */
 
-class CharacterListView extends React.Component {
+const React = require('react')
+const react_redux = require('react-redux')
+const components = require('../components/index')
+const actions = require('../store/actions/index')
+
+/**
+ * Constants
+ */
+
+const Component = React.Component
+const connect = react_redux.connect
+const CharacterList = components.CharacterList
+const Title = components.Title
+
+/**
+ * Define view component
+ */
+
+class CharacterListView extends Component {
   constructor() {
-    super();
+    super()
   }
 
   componentDidMount() {
@@ -17,19 +35,28 @@ class CharacterListView extends React.Component {
     if (this.props.fetching) {
       // return something here to indicate that you are fetching data
     }
+
     return (
       <div className="CharactersList_wrapper">
+        <Title text="Character List" />
         <CharacterList characters={this.props.characters} />
       </div>
-    );
+    )
   }
 }
 
-// our mapStateToProps needs to have two properties inherited from state
-// the characters and the fetching boolean
-export default connect(
-  null /* mapStateToProps replaces null here */,
-  {
-    /* action creators go here */
-  }
-)(CharacterListView);
+/**
+ * Define mapStateToProps
+ */
+
+const mapStateToProps = (state) => {
+  // TODO our mapStateToProps needs to have two properties inherited from state
+  // the characters and the fetching boolean
+  return state
+}
+
+/**
+ * Export view component
+ */
+
+module.exports = connect(mapStateToProps, {})(CharacterListView)

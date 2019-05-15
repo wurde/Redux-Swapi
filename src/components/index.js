@@ -1,2 +1,11 @@
-export { default as CharacterList } from "./CharacterList";
-export { default as Character } from "./Character";
+'use strict'
+
+/**
+ * Export components
+ */
+
+module.exports = {
+  Character: require('./Character'),
+  CharacterList: require('./CharacterList'),
+  Title: require('./Title'),
+}

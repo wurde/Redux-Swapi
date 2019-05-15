@@ -1,1 +1,9 @@
-export { default as CharacterListView } from "./CharacterListView";
+'use strict'
+
+/**
+ * Export view components
+ */
+
+module.exports = {
+  CharacterListView: require('./CharacterListView'),
+}

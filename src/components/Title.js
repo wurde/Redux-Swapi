@@ -10,10 +10,10 @@ const React = require('react')
  * Define component
  */
 
-const Character = ({ character }) => <li>{character.name}</li>
+const Title = ({ text }) => <h2>{text}</h2>
 
 /**
  * Export component
  */
 
-module.exports = Character
+module.exports = Title
