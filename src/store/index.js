@@ -20,8 +20,13 @@ const applyMiddleware = redux.applyMiddleware
  * Define store
  */
 
-// TODO add redux-thunk middleware
-const store = createStore(reducers, applyMiddleware(redux_logger.logger))
+const store = createStore(
+  reducers,
+  applyMiddleware(
+    redux_logger.logger,
+    redux_thunk.thunk
+  )
+)
 
 /**
  * Export store
