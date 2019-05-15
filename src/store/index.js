@@ -15,6 +15,8 @@ const reducers = require('./reducers/index')
 
 const createStore = redux.createStore
 const applyMiddleware = redux.applyMiddleware
+const logger = redux_logger.logger
+const think = redux_thunk.default
 
 /**
  * Define store
@@ -23,8 +25,8 @@ const applyMiddleware = redux.applyMiddleware
 const store = createStore(
   reducers,
   applyMiddleware(
-    redux_logger.logger,
-    redux_thunk.thunk
+    logger,
+    think
   )
 )
 
