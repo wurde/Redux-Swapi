@@ -1,15 +1,34 @@
-import React from "react";
+'use strict'
 
-import Character from "./Character";
+/**
+ * Dependencies
+ */
+
+const React = require('react')
+const Character = require('./Character')
+
+/**
+ * Define component
+ */
 
 const CharacterList = props => {
-  return (
-    <ul>
-      {props.characters.map(character => {
-        return <Character key={character.name} character={character} />;
-      })}
-    </ul>
-  );
-};
+  console.log('props.characters', props.characters)
 
-export default CharacterList;
+  if (props.characters) {
+    return (
+      <ul>
+      {props.characters.map(character => {
+        return <Character key={character.name} character={character} />
+      })}
+      </ul>
+    )
+  } else {
+    return (<p>No characters found</p>)
+  }
+}
+
+/**
+ * Export component
+ */
+
+module.exports = CharacterList

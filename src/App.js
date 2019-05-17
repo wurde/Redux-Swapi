@@ -1,12 +1,41 @@
-import React, { Component } from "react";
+'use strict'
 
-import { CharacterListView } from "./views";
-import "./styles/App.css";
+/**
+ * Dependencies
+ */
 
-class App extends Component {
-  render() {
-    return <CharacterListView />;
-  }
+const React = require('react')
+const react_redux = require('react-redux')
+const store = require('./store/index')
+const views = require('./views/index')
+
+/**
+ * Constants
+ */
+
+const Provider = react_redux.Provider
+const CharacterListView = views.CharacterListView
+
+/**
+ * Import component styles
+ */
+
+require('./App.scss')
+
+/**
+ * Define component
+ */
+
+function App() {
+  return (
+    <Provider store={store}>
+      <CharacterListView />
+    </Provider>
+  )
 }
 
-export default App;
+/**
+ * Export component
+ */
+
+module.exports = App

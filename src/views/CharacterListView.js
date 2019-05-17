@@ -1,35 +1,66 @@
-import React from "react";
-import { connect } from "react-redux";
+'use strict'
 
-import { CharacterList } from "../components";
-// import actions
+/**
+ * Dependencies
+ */
 
-class CharacterListView extends React.Component {
+const React = require('react')
+const react_redux = require('react-redux')
+const components = require('../components/index')
+const actions = require('../store/actions/index')
+
+/**
+ * Constants
+ */
+
+const Component = React.Component
+const connect = react_redux.connect
+const CharacterList = components.CharacterList
+const Title = components.Title
+const getCharacters = actions.getCharacters
+
+/**
+ * Define view component
+ */
+
+class CharacterListView extends Component {
   constructor() {
-    super();
+    super()
   }
 
   componentDidMount() {
-    // call our action
+    this.props.getCharacters()
   }
 
   render() {
-    if (this.props.fetching) {
-      // return something here to indicate that you are fetching data
+    console.log("this.props.isFetching", this.props.isFetching)
+    if (this.props.isFetching) {
+      return <p>Loading characters...</p>
     }
+
     return (
       <div className="CharactersList_wrapper">
+        <Title text="Character List" />
         <CharacterList characters={this.props.characters} />
       </div>
-    );
+    )
   }
 }
 
-// our mapStateToProps needs to have two properties inherited from state
-// the characters and the fetching boolean
-export default connect(
-  null /* mapStateToProps replaces null here */,
-  {
-    /* action creators go here */
+/**
+ * Define mapStateToProps
+ */
+
+const mapStateToProps = state => {
+  console.log('state', state)
+  return {
+    characters: state.starWarsReducer.characters,
+    isFetching: state.starWarsReducer.isFetching
   }
-)(CharacterListView);
+}
+
+/**
+ * Export view component
+ */
+
+module.exports = connect(mapStateToProps, { getCharacters })(CharacterListView)

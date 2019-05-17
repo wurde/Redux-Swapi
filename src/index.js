@@ -1,24 +1,15 @@
-import React from "react";
-import ReactDOM from "react-dom";
-import "./index.css";
-import App from "./App";
-import { Provider } from "react-redux";
-import { createStore } from "redux";
-import rootReducer from "./reducers";
-// needed dependancies
-// applyMiddleware from redux
-// thunk from redux-thunk
-// logger from redux-logger
-// rootReducer from ./reducers
+'use strict'
 
-const store = createStore(
-  rootReducer
-  /* applyMiddleware goes here */
-);
+/**
+ * Dependencies
+ */
 
-ReactDOM.render(
-  <Provider store={store}>
-    <App />
-  </Provider>,
-  document.getElementById("root")
-);
+const React = require('react')
+const ReactDOM = require('react-dom')
+const App = require('./App')
+
+/**
+ * Mount component to DOM
+ */
+
+ReactDOM.render(<App />, document.getElementById('root'))
